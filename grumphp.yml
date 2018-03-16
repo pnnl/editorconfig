@@ -5,6 +5,7 @@ parameters:
   git_dir: .
   tasks:
     composer: ~
+    editorconfig: ~
     phpcs:
       standard: PSR2
     phplint: ~
