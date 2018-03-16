@@ -2,10 +2,14 @@ parameters:
   bin_dir: vendor/bin
   extensions:
     - Pnnl\PrettyJSONYAML\Extension\Loader
+    - Pnnl\EditorConfig\Extension\Loader
   git_dir: .
   tasks:
     composer: ~
-    editorconfig: ~
+    editorconfig:
+      check_patterns:
+        - src/Extension/*
+        - src/Task/*
     phpcs:
       standard: PSR2
     phplint: ~
