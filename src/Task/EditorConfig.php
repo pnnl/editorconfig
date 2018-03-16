@@ -8,11 +8,15 @@
 
 namespace Pnnl\EditorConfig\Task;
 
-
+use GrumPHP\Collection\ProcessArgumentsCollection;
+use GrumPHP\Runner\TaskResult;
+use GrumPHP\Task\AbstractExternalTask;
 use GrumPHP\Task\Context\ContextInterface;
-use GrumPHP\Task\TaskInterface;
+use GrumPHP\Task\Context\GitPreCommitContext;
+use GrumPHP\Task\Context\RunContext;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class EditorConfig implements TaskInterface
+class EditorConfig extends AbstractExternalTask
 {
 
     /**

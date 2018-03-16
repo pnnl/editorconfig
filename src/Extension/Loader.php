@@ -8,7 +8,6 @@
 
 namespace Pnnl\EditorConfig\Extension;
 
-
 use GrumPHP\Extension\ExtensionInterface;
 use Pnnl\EditorConfig\Task\EditorConfig;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
