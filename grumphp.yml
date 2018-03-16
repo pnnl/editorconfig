@@ -1,0 +1,16 @@
+parameters:
+  bin_dir: vendor/bin
+  extensions:
+    - Pnnl\PrettyJSONYAML\Extension\Loader
+  git_dir: .
+  tasks:
+    composer: ~
+    phpcs:
+      standard: PSR2
+    phplint: ~
+    phpmd: ~
+    prettyjson:
+      top_keys:
+        - name
+        - description
+    prettyyaml: ~
