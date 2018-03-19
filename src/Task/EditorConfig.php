@@ -47,7 +47,7 @@ class EditorConfig extends AbstractExternalTask
         $resolver->addAllowedTypes('auto_fix', ['bool']);
         $resolver->addAllowedTypes('dotfiles', ['bool']);
         $resolver->addAllowedTypes('ignore_defaults', ['bool']);
-        $resolver->addAllowedTypes('list_files', ['array']);
+        $resolver->addAllowedTypes('list_files', ['bool']);
 
         return $resolver;
     }
@@ -116,10 +116,10 @@ class EditorConfig extends AbstractExternalTask
             $config['ignore_defaults']
         );
         $arguments->addOptionalArgument('--list-files', $config['list_files']);
-        $arguments->addArgumentArrayWithSeparatedValue(
-            '--exclude',
-            $config['exclude']
-        );
+        if (!empty($config['exclude'])) {
+            $arguments->add("--exclude");
+            $arguments->add($config['exclude']);
+        }
 
         return $arguments;
     }
