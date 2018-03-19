@@ -90,8 +90,8 @@ class EditorConfig extends AbstractExternalTask
         $process->run();
 
         if (!$process->isSuccessful()) {
-            $output = $process->getErrorOutput();
-            return TaskResult::createFailed($this, $context, $output);
+            return TaskResult::createFailed($this, $context,
+                $this->formatter->format($process));
         }
 
         return TaskResult::createPassed($this, $context);
