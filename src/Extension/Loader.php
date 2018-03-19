@@ -9,9 +9,9 @@
 namespace Pnnl\EditorConfig\Extension;
 
 use GrumPHP\Extension\ExtensionInterface;
-use Pnnl\EditorConfig\Formatter\EditorConfigFormatter;
-use Pnnl\EditorConfig\Task\EditorConfig;
+use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 
 class Loader implements ExtensionInterface
 {
@@ -21,15 +21,11 @@ class Loader implements ExtensionInterface
      */
     public function load(ContainerBuilder $container)
     {
-        // Create appropriate dependency injection
-        // Create Formatter
-        $container->register('formatter.editorconfig', EditorConfigFormatter::class);
-
-        // Create the EditorConfig task
-        $container->register('task.editorconfig', EditorConfig::class)
-            ->addArgument($container->get('config'))
-            ->addArgument($container->get("process_builder"))
-            ->addArgument($container->get('formatter.editorconfig'))
-            ->addTag('grumphp.task', ['config' => 'editorconfig']);
+        // Load extension configuration
+        $location = __DIR__ . "/../../resources/config/";
+        $locator = new FileLocator($location);
+        $loader = new YamlFileLoader($container, $locator);
+        $loader->load("formatters.yml");
+        $loader->load("tasks.yml");
     }
 }

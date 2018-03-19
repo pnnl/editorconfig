@@ -1,0 +1,10 @@
+services:
+  task.editorconfig:
+    arguments:
+      - '@config'
+      - '@process_builder'
+      - '@formatter.editorconfig'
+    class: Pnnl\EditorConfig\Task\EditorConfig
+    tags:
+      - config: editorconfig
+        name: grumphp.task
