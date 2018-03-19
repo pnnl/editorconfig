@@ -68,15 +68,9 @@ class EditorConfig extends AbstractExternalTask
     public function run(ContextInterface $context)
     {
         $config = $this->getConfiguration();
-        /** @var array $check_patterns */
-        $check_patterns = $config['check_patterns'];
 
         /** @var \GrumPHP\Collection\FilesCollection $files */
         $files = $context->getFiles();
-        if (0 !== count($check_patterns)) {
-            $files = $files->paths($check_patterns);
-        }
-        $files = $files->extensions(["*"]);
 
         if (0 === count($files)) {
             return TaskResult::createSkipped($this, $context);
