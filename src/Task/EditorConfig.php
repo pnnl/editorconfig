@@ -82,7 +82,7 @@ class EditorConfig extends AbstractExternalTask
             return TaskResult::createSkipped($this, $context);
         }
 
-        $arguments = $this->processBuilder->createArgumentsForCommand($this->getName());
+        $arguments = $this->processBuilder->createArgumentsForCommand('editorconfig-checker');
         $arguments = $this->addArgumentsFromConfig($arguments, $config);
         $arguments->addFiles($files);
 
