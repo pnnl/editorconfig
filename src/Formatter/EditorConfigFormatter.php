@@ -13,8 +13,12 @@ use Symfony\Component\Process\Process;
 
 class EditorConfigFormatter implements ProcessFormatterInterface
 {
+
+    /**
+     * {@inheritdoc}
+     */
     public function format(Process $process)
     {
-        // TODO: Implement format() method.
+        return $process->getOutput();
     }
 }
