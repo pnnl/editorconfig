@@ -6,10 +6,7 @@ parameters:
   git_dir: .
   tasks:
     composer: ~
-    editorconfig:
-      check_patterns:
-        - src/Extension/*
-        - src/Task/*
+    editorconfig: ~
     phpcs:
       standard: PSR2
     phplint: ~
