@@ -4,7 +4,9 @@ Ensure files conform to `.editorconfig` file settings.
 
 How it works
 ----------------
-TODO: Fill this in
+Uses [`editorconfig-checker/editorconfig-checker`](https://packagist.org/packages/editorconfig-checker/editorconfig-checker)
+to verify your files follow the rules defined in your `.editorconfig` file.
+
 
 How to use:
 ----------------
@@ -30,14 +32,72 @@ Parameters:
 parameters:
   tasks:
     editorconfig:
+      auto_fix: false
+      dotfiles: false
+      ignore_defaults: false
       ignore_patterns: []
+      list_files: false
+      triggered_by: []
 ```
+**auto_fix**
+
+*Default: false*
+
+Will automatically fix fixable issues (insert_final_newline, end_of_line, trim_trailing_whitespace, tabs to spaces).
+See [README] for location of autofixed files.
+
+**dotfiles**
+
+*Default: false*
+
+Use this flag if you want to exclude dotfiles.
+
+**ignore_defaults**
+
+*Default: false*
+
+Will ignore default excludes, see [README] for details.
+
 **ignore_patterns**
 
 *Default: []*
 
-This is a list of patterns that will be ignored by the task. 
-With this option you can skip files.
+String or regex to filter files which should not be checked.
+
+*Example:*
+```yaml
+parameters:
+  tasks:
+    editorconfig:
+      ignored_patterns:
+        - '.(yml|yaml)' # ignore all files ending in yml or yaml
+        - '.json' # ignore all files ending in json
+        - 'tests/' # ignore all files in the tests folder
+```
+
+**list_files**
+
+*Default: false*
+
+Will print all files which are checked to stdout (will only output if there is an error).
+
+**triggered_by**
+
+*Default: []*
+
+This is a list of extensions that should be checked. Leave empty for all.
+
+*Example:*
+```yaml
+parameters:
+  tasks:
+    editorconfig:
+      triggered_by:
+        - yml
+        - yaml
+        - json
+        - php
+```
 
 Disclaimer
 ----------------
@@ -53,3 +113,6 @@ BATTELLE<br />
 UNITED STATES DEPARTMENT OF ENERGY<br />
 <em>under Contract DE-AC05-76RL01830</em><br />
 </p>
+
+
+[README]: https://github.com/editorconfig-checker/editorconfig-checker.php/blob/master/README.md
