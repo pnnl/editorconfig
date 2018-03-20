@@ -34,20 +34,20 @@ class EditorConfig extends AbstractExternalTask
     {
         $resolver = new OptionsResolver();
         $resolver->setDefaults([
-            'check_patterns'  => ['*'],
-            'exclude'         => '.idea',
             'auto_fix'        => false,
             'dotfiles'        => false,
             'ignore_defaults' => false,
+            'ignore_patterns' => [],
             'list_files'      => false,
+            'triggered_by' => []
         ]);
 
-        $resolver->addAllowedTypes('check_patterns', ['string[]']);
-        $resolver->addAllowedTypes('exclude', ['string']);
         $resolver->addAllowedTypes('auto_fix', ['bool']);
         $resolver->addAllowedTypes('dotfiles', ['bool']);
         $resolver->addAllowedTypes('ignore_defaults', ['bool']);
+        $resolver->addAllowedTypes('ignore_patterns', ['string[]']);
         $resolver->addAllowedTypes('list_files', ['bool']);
+        $resolver->addAllowedTypes('triggered_by', ['string[]']);
 
         return $resolver;
     }
@@ -67,10 +67,25 @@ class EditorConfig extends AbstractExternalTask
      */
     public function run(ContextInterface $context)
     {
+        /** @var array $config */
         $config = $this->getConfiguration();
+        /** @var array $ignorePatterns */
+        $ignorePatterns = $config['ignore_patterns'];
+        /** @var array $extensions */
+        $extensions = $config['triggered_by'];
 
         /** @var \GrumPHP\Collection\FilesCollection $files */
         $files = $context->getFiles();
+
+        // Remove files that should be ignored
+        if (0 !== count($ignorePatterns)) {
+            $files = $files->notPaths($ignorePatterns);
+        }
+
+        // Check only files with particular extensions
+        if (0 !== count($extensions)) {
+            $files = $files->extensions($extensions);
+        }
 
         if (0 === count($files)) {
             return TaskResult::createSkipped($this, $context);
@@ -110,10 +125,6 @@ class EditorConfig extends AbstractExternalTask
             $config['ignore_defaults']
         );
         $arguments->addOptionalArgument('--list-files', $config['list_files']);
-        if (!empty($config['exclude'])) {
-            $arguments->add("--exclude");
-            $arguments->add($config['exclude']);
-        }
 
         return $arguments;
     }
