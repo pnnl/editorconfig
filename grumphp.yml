@@ -11,8 +11,13 @@ parameters:
       standard: PSR2
     phplint: ~
     phpmd: ~
+    phpparser:
+      kind: php5
+    phpversion:
+      project: "7.0"
     prettyjson:
       top_keys:
         - name
         - description
     prettyyaml: ~
+    securitychecker: ~

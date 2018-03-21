@@ -32,8 +32,12 @@
   },
   "require-dev": {
     "jakub-onderka/php-parallel-lint": "^1.0",
+    "nikic/php-parser": "^4.0",
+    "php-coveralls/php-coveralls": "^2.0",
     "phpmd/phpmd": "^2.6",
+    "phpunit/phpunit": "^7.0",
     "pnnl/pretty_lint": "^1.0",
+    "sensiolabs/security-checker": "^4.1",
     "squizlabs/php_codesniffer": "^3.2"
   },
   "type": "project"
