@@ -12,6 +12,11 @@
       "Pnnl\\EditorConfig\\": "src"
     }
   },
+  "autoload-dev": {
+    "psr-4": {
+      "Pnnl\\Tests\\": "tests"
+    }
+  },
   "config": {
     "process-timeout": 0,
     "sort-packages": true
@@ -27,7 +32,7 @@
   ],
   "require": {
     "editorconfig-checker/editorconfig-checker": "^7.0",
-    "php": "^7.0",
+    "php": "^7.1",
     "phpro/grumphp": "^0.14.0"
   },
   "require-dev": {
@@ -39,6 +44,9 @@
     "pnnl/pretty_lint": "^1.0",
     "sensiolabs/security-checker": "^4.1",
     "squizlabs/php_codesniffer": "^3.2"
+  },
+  "scripts": {
+    "test": "phpunit"
   },
   "type": "project"
 }
