@@ -1,5 +1,9 @@
 EditorConfig
 ================
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/PNNL/editorconfig/blob/master/LICENSE.md)
+[![Travis CI](https://travis-ci.org/pnnl/editorconfig.svg?branch=master)](https://travis-ci.org/pnnl/drupal-installer)
+[![Coverage Status](https://coveralls.io/repos/github/pnnl/editorconfig/badge.svg?branch=master)](https://coveralls.io/github/pnnl/editorconfig?branch=master)
+
 Ensure files conform to `.editorconfig` file settings.
 
 How it works
